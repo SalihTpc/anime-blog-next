@@ -16,6 +16,7 @@ import {
   getAuth,
   updateProfile,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from "firebase/auth";
 import { Anime, Category } from "@/lib/Interface";
 import { modifyString } from "@/lib/generalFunc";
@@ -33,32 +34,6 @@ const app = getApps().length > 0 ? getApp() : initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
 const auth = getAuth();
-
-const login = async (email: string, password: string) => {
-  console.log(email, password);
-  try {
-    const { user } = await signInWithEmailAndPassword(auth, email, password);
-    const myUser = {
-      id: user.uid,
-      name: user.displayName,
-      email: user.email,
-      image: user.photoURL,
-    };
-    return myUser;
-  } catch (error: any) {
-    console.log(error.message);
-  }
-};
-
-const updateMyProfile = async (data: any) => {
-  if (auth.currentUser !== null) {
-    try {
-      await updateProfile(auth.currentUser, data);
-    } catch (error: any) {
-      console.log(error.message);
-    }
-  }
-};
 
 const addAnime = async (
   categories: string[],
@@ -135,8 +110,7 @@ export {
   app,
   db,
   storage,
-  login,
-  updateMyProfile,
+  auth,
   addAnime,
   addCategory,
   getCategories,

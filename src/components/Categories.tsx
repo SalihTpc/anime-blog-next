@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Category } from "@/lib/Interface";
 import { Card } from "antd";
 import Link from "next/link";
-import { getCategories } from "@/app/firebase.config";
+import { getCategories } from "../app/firebase.config";
 
 async function getData() {
   const res = await getCategories();

@@ -3,10 +3,14 @@ import Loading from "@/components/Loading";
 import ProfileForm from "@/components/ProfileForm";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const page = () => {
   const { data: sesion, status } = useSession();
+  const router = useRouter();
+  // status == "unauthenticated" && router.push("/login");
   return (
     <div>
       {status == "loading" ? (

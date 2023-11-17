@@ -1,5 +1,5 @@
 "use client";
-import { addCategory } from "@/app/firebase.config";
+import { addCategory } from "../app/firebase.config";
 import { Button, Form, Input } from "antd";
 import React from "react";
 

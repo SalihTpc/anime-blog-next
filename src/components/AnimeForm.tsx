@@ -1,5 +1,5 @@
 "use client";
-import { addAnime, getCategories } from "@/app/firebase.config";
+import { addAnime, getCategories } from "../app/firebase.config";
 import { Category } from "@/lib/Interface";
 import { Button, Form, Input, Select, message, notification } from "antd";
 import React, { useEffect, useState } from "react";
@@ -99,11 +99,7 @@ const AnimeForm = () => {
         name="summary"
         rules={[{ required: true, message: "Please input summary!" }]}
       >
-        <Input.TextArea
-          className="w-full"
-          placeholder="Summary of Anime"
-          autoSize={{ minRows: 2, maxRows: 6 }}
-        />
+        <Input.TextArea className="w-full" placeholder="Summary of Anime" />
       </Form.Item>
       <Form.Item<FieldType>
         name="image"

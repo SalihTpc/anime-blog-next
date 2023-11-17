@@ -1,5 +1,5 @@
 "use client";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
 import { signIn, useSession } from "next-auth/react";
 import Loading from "./Loading";
 
@@ -7,14 +7,18 @@ const LoginForm = () => {
   const { status } = useSession();
 
   const onFinish = async (values: any) => {
-    console.log("Success:", values);
-
-    await signIn("credentials", {
-      email: values.email,
-      password: values.password,
-      redirect: true,
-      callbackUrl: "/",
-    });
+    // console.log("Success:", values);
+    try {
+      await signIn("credentials", {
+        email: values.email,
+        password: values.password,
+        redirect: true,
+        callbackUrl: "/",
+      });
+      message.success("User Logged In");
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const onFinishFailed = (errorInfo: any) => {

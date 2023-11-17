@@ -1,10 +1,11 @@
 "use client";
 import { FloatButton } from "antd";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import React from "react";
 import HeaderItem from "./HeaderItem";
 import HeaderItemHome from "./HeaderItemHome";
+import SessionController from "./SessionController";
 
 const Header = ({ children }: { children: React.ReactNode }) => {
   const homeItem = {
@@ -27,7 +28,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
       title: "Category",
     },
   ];
-  const { status } = useSession();
+
   const router = useRouter();
   const logoutHandler = async () => {
     signOut();
@@ -55,7 +56,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
       </div>
       <div className="font-montserrat">
         <div className="sm:px-16 px-4 pt-32 ">
-          {status !== "unauthenticated" && (
+          <SessionController>
             <FloatButton.Group
               trigger="click"
               badge={{ dot: true }}
@@ -72,7 +73,7 @@ const Header = ({ children }: { children: React.ReactNode }) => {
                 icon={<i className="fa-solid fa-right-from-bracket" />}
               />
             </FloatButton.Group>
-          )}
+          </SessionController>
           <FloatButton.BackTop style={{ right: 64, bottom: 14 }} />
           {children}
         </div>

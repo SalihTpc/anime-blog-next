@@ -15,7 +15,7 @@ const page = async () => {
   const data = await getData();
 
   return (
-    <div className="h-[300vh]">
+    <div className="">
       <NewButton path="animes" />
       <div className="flex items-center justify-center flex-wrap gap-4">
         {data.map((dat: Anime) => (

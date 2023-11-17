@@ -1,15 +1,12 @@
-import { getAnime, getAnimes } from "@/app/firebase.config";
-import { Anime } from "@/lib/Interface";
-import { modifyString } from "@/lib/generalFunc";
-import React from "react";
-import { notFound } from "next/navigation";
+import { getAnime, getAnimes } from "../../firebase.config";
 import AnimeInfo from "@/components/AnimeInfo";
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   const animes = await getAnimes();
 
   return animes.map((anime) => ({
-    slug: anime.title,
+    slug: anime.id,
   }));
 }
 

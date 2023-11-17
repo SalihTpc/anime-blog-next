@@ -1,4 +1,4 @@
-import { getAnimes } from "@/app/firebase.config";
+import { getAnimes } from "../../firebase.config";
 import AnimeLayout from "@/components/AnimeLayout";
 
 export default async function layout({
